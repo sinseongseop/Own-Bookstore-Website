@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookstore</title>
+    <style>
+        /* Add some basic styling for better presentation */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .book-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .book-card {
+            width: 31%;
+            border: 1px solid ;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .book-image {
+            max-width: 100%;
+            height: 200px; /* Set a fixed height for all images */
+            object-fit: cover; /* Maintain aspect ratio and cover the container */
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Bookstore</h2>
+
+<div class="book-container">
+    <!-- Assuming 'books' is the list of BookDTO objects passed from the controller -->
+    <div th:each="book : ${books}" class="book-card">
+        <img th:src="${book.imageAddress}" alt="Book Image" class="book-image"/>
+        <p th:text="${book.title}"></p>
+        <p th:text="${book.author}"></p>
+        <p th:text="${book.publisher}"></p>
+        <!-- You can add a button or link here for purchasing the book -->
+        <a th:href="'/purchase/' + ${book.title}">Purchase</a>
+    </div>
+</div>
+
+</body>
+</html>
